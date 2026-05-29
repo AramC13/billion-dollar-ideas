@@ -1,0 +1,116 @@
+html, body { /* assign html to have 100% of the screen, and body to have 100% of html (height asks for that amount of its parent) */
+
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+
+    width: 90%;
+    margin: auto;
+
+    background: repeating-linear-gradient(
+        45deg,
+        rgb(93, 1, 199),
+        rgb(93, 1, 199) 10px,
+        rgb(140, 1, 254) 10px,
+        rgb(140, 1, 254) 20px
+    );
+    /* background-color: rgb(92, 50, 110);  */
+
+    /* align in vertical middle */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* top to bottom alignment */
+
+    /* general stuff */
+    font-family: "Domine", sans-serif;
+    color: white;
+    text-align: center;
+
+}
+
+input {
+
+    font-size: 39px;
+    color: black;
+    font-family: "Domine", sans-serif;
+
+    background-color: white;
+    border-style: solid;
+    border-color: white;
+    border-radius: 13px;
+
+    margin: 10px 0px; /*top and bottom are 10, right left are 0*/
+
+}
+input::placeholder {
+
+    color: grey;
+
+}
+
+button {
+
+    font-size: 39px;
+    font-family: "Domine", sans-serif;
+    color: white;
+
+    display: inline-block;
+
+    border-style: solid;
+    border-color: white;
+    border-radius: 17px;
+    padding:10px;
+    background-color: rgb(4, 183, 219);
+
+}
+button:hover {
+
+    background-color: rgb(3, 120, 143);
+
+}
+
+.main-header {
+
+    font-size: 87px;
+    color: white;
+    font-family: "Limelight"; 
+
+    /* border around text */
+    display: inline-block;
+    border-style: solid;
+    border-color: white;
+    border-radius: 26px;
+    padding: 20px;
+    background-color: rgb(66, 0, 128);
+
+}
+
+.small-text, .med-text {
+
+    display: inline-block;
+
+    border-style: solid;
+    border-color: white;
+    border-radius: 17px;
+    padding: 10px;
+
+}
+
+.small-text {
+
+    font-size: 26px;
+
+    background-color: rgb(66, 0, 128);
+
+}
+
+.med-text {
+
+    font-size: 39px;
+
+    background-color: rgb(140, 1, 254);
+
+}
