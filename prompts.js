@@ -122,4 +122,4 @@ module.exports = {
 
 // project is done with require, not import, so use this instead of export -> then require them in order
 
-// this is to test repo
+// this is to test repo, bdi is a git repo now, 
