@@ -122,4 +122,5 @@ module.exports = {
 
 // project is done with require, not import, so use this instead of export -> then require them in order
 
-// this is to test repo, bdi is a git repo now, 
+// this is to test repo, bdi is a git repo now, the init created a git folder, the remote add tied the folder to the online repo.
+// Now all that needs to be done when modifications is git add . (queue current folder for saving), git commit -m "nameofcommit" (saves the added folder locally (on computer)), git push (adds the whole thing to github repo)
