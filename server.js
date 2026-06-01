@@ -8,7 +8,7 @@ const { Server } = require("socket.io");
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-app.use(express.static("public"));
+app.use(express.static("public")); // find frontend code in public folder
 
 // Server listen
 server.listen(3000, "0.0.0.0", function() {
@@ -33,12 +33,12 @@ const { number_all_prompts, all_prompts } = require("./prompts.js"); // will gra
 selectPrompts();
 
 // The timeout waits depend on player count, for now use these:
-let timeoutOne = 3000; // One: wait from when all responses are in before the Q1 responses are revealed (stage: start of response reveal, only called once/no overlap)
-let timeoutTwo = 5000; // Two: wait from start of one results page until the next question's responses are begun to be displayed (called at results page of each q/no overlap)
-let timeoutThree = 8000; // Three: time after last results shown before final results shown (called at last results page) (only called once/overlaps -> three - two = calculating final results page (i think))
-let timeoutFour = 25000; // Four: wait from when the question is displayed until votes are to be revealed, make this one (player_count + 1) x timeoutFive () -> time for all responses to fully display, +1 bc there should be time from question display to first answer, and last answer to voting (called on each q's question display/overlaps, must include all of timeoutFive (time between response reveals during results for each q))
-let timeoutFive = 5000; // Five: time in between revealing responses (called on each response/no overlap)
-let timeoutSix = 3000; // time from prompt display before making interaction available (still in prompt/answering phase, no overlap)
+let timeoutOne = 3000; // no edit, One: wait from when all responses are in before the Q1 responses are revealed (stage: start of response reveal, only called once/no overlap)
+let timeoutTwo = 5000; // no edit, Two: wait from start of one results page until the next question's responses are begun to be displayed (called at results page of each q/no overlap)
+let timeoutThree = 6000; // no edit, Three: time after last results shown before final results shown (called at last results page) (only called once/overlaps -> three - two = calculating final results page (i think))
+let timeoutFour = 0; // edit, Four: wait from when the question is displayed until votes are to be revealed, make this one (player_count + 1) x timeoutFive () -> time for all responses to fully display, +1 bc there should be time from question display to first answer, and last answer to voting (called on each q's question display/overlaps, must include all of timeoutFive (time between response reveals during results for each q))
+let timeoutFive = 1000; // no edit, Five: time in between revealing responses (called on each response/no overlap)
+let timeoutSix = 1500; // no edit, time from prompt display before making interaction available (still in prompt/answering phase, no overlap)
 
 
 
@@ -164,6 +164,9 @@ io.on("connection", function(socket) {
         io.emit("goto instructions", prompts, number_prompts, player_count); // send info about this game specifically now that the lobby is locked
 
         lobby_locked = true; // tell other players to wait once game is started
+
+        // Now that the lobby is locked, update the waits depending on player count
+        timeoutFour = (player_count + 1) * timeoutFive;
     });
 
     // On a ready signal, check if all players are ready
