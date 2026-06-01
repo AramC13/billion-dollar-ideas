@@ -7,9 +7,7 @@ To start a game, obtain the IP address with the following terminal command:
 `ipconfig`
 Then, enter the project repository and run the following terminal command, creating a Node JS server:
 `node server.js`
-This will start the server, and a server running message will be logged in the terminal. On each device, type the following url (insert the IP address into ipAddress):
-<http://ipAddress:3000/>
-This will enter the application on the user's device, then the game can be played as shown in the video.
+This will start the server, and a server running message will be logged in the terminal. On each device, type the following url (insert the IP address into ipAddress): <http://ipAddress:3000/>. This will enter the application on the user's device, then the game can be played as shown in the video.
 
 The repository folder contains the following files:
 
