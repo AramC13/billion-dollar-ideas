@@ -335,6 +335,12 @@ io.on("connection", function(socket) {
                     // Set wait to build anticipation, then tell them to reveal
                     setTimeout(() => {
                         io.emit("reveal final results", rank_arr); // rank_arr stores the rankings
+
+                        // Very important: call reset game here, all globals will be reset nmw
+                        resetGame();
+
+                        // However, don't let the client know to reset the game yet
+                        // Note resetGame will send them new info
                     }, timeoutThree); 
                 }
                 else {
@@ -346,7 +352,7 @@ io.on("connection", function(socket) {
 
     socket.on("vip reset the game", function() { // newupdate123
 
-        resetGame();
+        io.emit("game reset");
 
     });
 });
@@ -356,6 +362,8 @@ io.on("connection", function(socket) {
 // Other functions
 
 function selectPrompts() {
+
+    prompts = [];
 
     for (let k = 0; k < number_prompts; k ++) {
 
@@ -474,11 +482,7 @@ function resetGame() {
     // Now select new prompts to update that list
     selectPrompts();
 
-    // ok now server should be reset and signals will work so game can be reset, hope ftb
-    
-
-    io.emit("game reset");
-
-    
+    // Now everything is reset in server.js, an updated player_arr has been created for next game
+    // Now the program will wait for the vip reset the game signal, then restart the game
 
 }

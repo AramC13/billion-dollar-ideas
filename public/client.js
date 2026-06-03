@@ -383,7 +383,7 @@ function resetGame() { //newupdate123
     names = [];
     qIndex = 0;
 
-    is_first = false; // DOUBLE CHECK
+    is_first = false; // No impact: they will be sent their vip status anyway when they select their name
     // dont reset this_index, that is updated by server.js
 
     number_prompts = 0;
@@ -423,6 +423,8 @@ socket.on("new name", function(names_list) {
 });
 
 socket.on("your index", function(i) {
+    // This function runs whether lobby is locked or not
+
     this_index = i;
     console.log("my index:", this_index);
 });
